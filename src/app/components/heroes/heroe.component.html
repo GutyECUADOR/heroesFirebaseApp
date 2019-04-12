@@ -1,0 +1,50 @@
+<h1>Heroe <small> {{ heroe.nombre }} </small></h1>
+<button 
+  [routerLink]="['/heroes']"
+  class="btn btn-outline btn-danger">Regresar</button>
+<hr>
+
+<div class="row animated fadeIn fast">
+  <div class="col-md-12">
+
+    <form (ngSubmit)="submitForm()" #formulario="ngForm">
+      
+      <div class="form-group">
+        <label for="txtNombre">Nombre</label>
+        <input 
+          type="text" 
+          class="form-control" 
+          id="txtNombre"
+          name="txtNombre"
+          [(ngModel)]="heroe.nombre"
+          placeholder="Nombre del Heroe"
+          required>
+      </div>
+
+      <div class="form-group">
+        <select 
+           [(ngModel)]="heroe.casa"
+          name="selectCasa" 
+          class="form-control"
+          required>
+          <option value="MV">Marvel</option>
+          <option value="DC">DC Comic</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <textarea 
+          [(ngModel)]="heroe.descripcion"
+          name="txtDescripcion"
+          class="form-control" 
+          rows="3"></textarea>
+      </div>
+
+      <div class="text-right">
+        <button type="submit" class="btn btn-success" [disabled]="!formulario.valid">Guardar</button>
+      </div>
+      
+    </form>
+
+  </div>
+</div>
