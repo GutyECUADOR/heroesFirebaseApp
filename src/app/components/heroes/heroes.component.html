@@ -24,8 +24,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td></td>
+                    <tr *ngFor="let row of heroesList; let i = index">
+                        <td>{{ i+1 }}</td>
+                        <td>{{ row.data.nombre }}</td>
+                        <td>{{ row.data.casa }}</td>
+                        <td class="text-right">
+                            <button 
+                                (click)="editHeroe(row.key)" 
+                                class="btn btn-info">Editar
+                            </button>
+                            <button 
+                                (click)="deleteHeroe(row.key)" class="btn btn-danger">Eliminar
+                            </button>
+                        </td>
                     </tr>
                 </tbody>
             </table>

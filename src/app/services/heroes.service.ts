@@ -43,6 +43,14 @@ export class HeroesService {
 
   }
 
+  /*NOTA: Hasta que no se subcriba alguien al servicio este no realiza la peticion */
+  getHeroes() {
+    return this.http.get(this.fireBaseHeroesURL).pipe(map(respuesta => {
+      console.log(respuesta);
+      return respuesta;
+    }));
+  }
+
   updateHeroe(heroe: IHeroe, heroeKey: string) {
     const updateURL = `${this.fireBaseSingleHeroeURL}/${heroeKey}.json`;
     const body = JSON.stringify(heroe);
@@ -57,11 +65,17 @@ export class HeroesService {
 
   }
 
-  /*NOTA: Hasta que no se subcriba alguien al servicio este no realiza la peticion */
-  getHeroes() {
-    return this.http.get(this.fireBaseHeroesURL).pipe(map(respuesta => {
+  deleteHeroe(heroeKey: string) {
+    const URL = `${this.fireBaseSingleHeroeURL}/${heroeKey}.json`;
+    const headers = new HttpHeaders({
+      'Content-Type': 'Aplicaction/json'
+    });
+
+    return this.http.delete(URL, { headers }).pipe(map(respuesta => {
       console.log(respuesta);
       return respuesta;
     }));
+
   }
+
 }
